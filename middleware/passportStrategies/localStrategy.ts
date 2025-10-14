@@ -21,7 +21,11 @@ const localStrategy = new LocalStrategy(
 /*
 FIX ME (types) 😭
 */
-passport.serializeUser(function (user: any, done: any) {
+// according to serializeUser documentation, it accepts the user with type Express.User as arg
+// just check index.d.ts in node_modules lol
+// we need to do "declaration-merging". research that.
+passport.serializeUser(function (user: Express.User, done: (err: any, id?: number) => void) {
+  // the reason why Express.User is so that later on when you call the session object via `req.user`, this variable will be well defined
   done(null, user.id);
 });
 
