@@ -3,6 +3,12 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { getUserByEmailIdAndPassword, getUserById} from "../../controllers/userController";
 import { PassportStrategy } from '../../interfaces/index';
 
+namespace Express {
+    export interface User {
+        id?: number;
+    }
+}
+
 const localStrategy = new LocalStrategy(
   {
     usernameField: "email",
@@ -19,7 +25,7 @@ const localStrategy = new LocalStrategy(
 );
 
 /*
-FIX ME (types) 😭
+FIXED ME (types) 😭
 */
 // according to serializeUser documentation, it accepts the user with type Express.User as arg
 // just check index.d.ts in node_modules lol
@@ -30,9 +36,9 @@ passport.serializeUser(function (user: Express.User, done: (err: any, id?: numbe
 });
 
 /*
-FIX ME (types) 😭
+FIXED ME (types) 😭 (UNSURE, just according to passport\index.d.ts)
 */
-passport.deserializeUser(function (id: any, done: any) {
+passport.deserializeUser(function (id: number, done: (err: any, user?: Express.User | false | null) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);

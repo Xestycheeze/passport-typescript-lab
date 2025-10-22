@@ -24,22 +24,22 @@ const database = [
 
 const userModel = {
 
-    /* FIXED ME (types) 😭 */
-    findOne: (email: string) => {
-        const user = database.find((user) => user.email === email);
-        if (user) {
-            return user;
-        }
-        throw new Error(`Couldn't find user with email: ${email}`);
-    },
-    /* FIXED ME (types) 😭 */
-    findById: (id: number) => {
-        const user = database.find((user) => user.id === id);
-        if (user) {
-            return user;
-        }
-        throw new Error(`Couldn't find user with id: ${id}`);
-    },
+  /* FIXED ME (types) 😭 */
+  findOne: (email: string) => {
+    const user = database.find((user) => user.email === email);
+    if (user) {
+      return user;
+    }
+    throw new Error(`Couldn't find user with email: ${email}`);
+  },
+  /* FIXED ME (types) 😭 */
+  findById: (id: number) => {
+    const user = database.find((user) => user.id === id);
+    if (user) {
+      return user;
+    }
+    throw new Error(`Couldn't find user with id: ${id}`);
+  },
 };
 
 export { database, userModel };
