@@ -1,7 +1,10 @@
+import {Request, Response, NextFunction} from "express";
+// datatypes discovered in express-serve-static-core\index.d.ts
+// UNSURE since Request has been augmented by Passport, but not Response nor NextFunction. Maybe this will cause problems down the line
 /*
-FIX ME (types) 😭
+FIXED ME (types) 😭
 */
-export const ensureAuthenticated = (req: any, res: any, next: any) => {
+export const ensureAuthenticated = (req: Request, res: Response , next: NextFunction) => {
   if (req.isAuthenticated()) {
     return next();
   }
@@ -9,9 +12,9 @@ export const ensureAuthenticated = (req: any, res: any, next: any) => {
 }
 
 /*
-FIX ME (types) 😭
+FIXED ME (types) 😭
 */
-export const forwardAuthenticated = (req: any, res: any, next: any) => {
+export const forwardAuthenticated = (req: Request, res: Response, next: NextFunction) => {
     if (!req.isAuthenticated()) {
       return next();
     }
