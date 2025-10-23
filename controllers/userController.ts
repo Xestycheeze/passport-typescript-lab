@@ -6,6 +6,8 @@ const getUserByEmailIdAndPassword = (email: string, password: string) => {
     if (isUserValid(user, password)) {
       return user;
     }
+    // unifying error handling in localStrategy.ts
+    throw new Error('Password is incorrect')
   }
   return null;
 };

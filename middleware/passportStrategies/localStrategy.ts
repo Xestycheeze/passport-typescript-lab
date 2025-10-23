@@ -15,12 +15,20 @@ const localStrategy = new LocalStrategy(
     passwordField: "password",
   },
   (email, password, done) => {
-    const user = getUserByEmailIdAndPassword(email, password);
-    return user
-      ? done(null, user)
-      : done(null, false, {
-          message: "Your login details are not valid. Please try again",
-        });
+    try {
+        const user = getUserByEmailIdAndPassword(email, password);
+        return user
+            ? done(null, user)
+            : done(null, false, {
+                message: "Your login details are not valid. Please try again",
+            });
+    } catch (error: unknown) {
+        if (error instanceof Error){
+            return done(null, false, {message: error.message});
+        } else {
+            return done(null, false, {message: "An unknown error occurred."});
+        }
+    }
   }
 );
 
