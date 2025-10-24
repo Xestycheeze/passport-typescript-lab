@@ -1,0 +1,16 @@
+<h1>Admin Dashboard</h1>
+<div>
+    <% sessions.forEach(function (session) {%>
+    <div>
+        Session ID: <%= session.sessionId %>
+    </div>
+    <div>
+        User ID: <%= session.userId %>
+    </div>
+    <div>
+        <form method="POST" action="/admin/revoke/<%=session.sessionId%>">
+            <button type="submit">Revoke Session</button>
+        </form>
+    </div>
+    <% }); %>
+</div>
