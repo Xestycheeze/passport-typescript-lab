@@ -1,7 +1,7 @@
 import {userModel} from "../models/userModel";
 
-const getUserByEmailIdAndPassword = (email: string, password: string) => {
-  let user = userModel.findOne(email);
+const getUserByEmailIdAndPassword = async (email: string, password: string) => {
+  let user = await userModel.findOne(email);
   if (user) {
     if (isUserValid(user, password)) {
       return user;
